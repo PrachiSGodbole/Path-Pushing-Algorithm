@@ -22,7 +22,7 @@ public static boolean flag3 = true;
 // --------------------------------------------------------------------------
 // called for	initialization of program
 // --------------------------------------------------------------------------
-public Prog_copy2(int i,char a)
+public Prog(int i,char a)
 { 
  number = i;	
  msg = null;
