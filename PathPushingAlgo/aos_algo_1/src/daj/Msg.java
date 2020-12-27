@@ -19,7 +19,7 @@ public int value()
 }
 public String getText()
 {
- return "content = " + m;
+ return  m;
 }
 }
 
