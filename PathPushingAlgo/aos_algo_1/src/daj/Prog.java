@@ -12,16 +12,28 @@ public int index;
 public Message msg;
 public boolean sent;
 public char name;
+public static int count =0;
+public static boolean flag = true;
+public static boolean flag0 = true;
+public static boolean flag1 = true;
+public static boolean flag2 = true;
+public static boolean flag3 = true;
 
 // --------------------------------------------------------------------------
 // called for	initialization of program
 // --------------------------------------------------------------------------
-public Prog(int i,char a)
+public Prog_copy2(int i,char a)
 { 
  number = i;	
  msg = null;
  sent = false;
  name =a;
+ count =0;
+ flag = true;
+ flag0 = true;
+ flag1 = true;
+ flag2 = true;
+ flag3 = true;
 } 
 
 // --------------------------------------------------------------------------
@@ -29,55 +41,104 @@ public Prog(int i,char a)
 // --------------------------------------------------------------------------
 public void main()
 { 
- if (number == 0)
-   {
-	out(0).send(new Msg("exAB"));
-	sent = true;
-   }
- if (number == 1)
- {
-	 out(0).send(new Msg("exABex"));
-	 sent = true;
- }
- if (number == 2)
- {
-	 out(0).send(new Msg("exCD"));
-	 sent = true;
- }
- if (number == 3)
- {
-	 out(0).send(new Msg("exCDex"));
-	 sent = true;
- }
- if (number == 4)
- {
-	 out(0).send(new Msg("exEF"));
-	 sent = true;
- }
- if (number == 5)
- {
-	 out(0).send(new Msg("exEFex"));
-	 sent = true;
- }
- if (number == 6)
- {
-	 out(0).send(new Msg("exGH"));
-	 sent = true;
- }
- if (number == 7)
- {
-	 out(0).send(new Msg("exGHex"));
-	 sent = true;
- }
- //GlobalAssertion assertion = new NumberOfMessages();
- for (int i = 0; i < 8; i++)
-   {
-	//test(assertion);
-	index = in().select();
-	msg = in(index).receive();
-	out(index).send(msg);
-	//msg = null;
-   }
+	while(flag) {
+		System.out.println("inside for::: count"+ count++ +"  flag "+ flag);
+		if (number == 0)
+		   {
+			if(flag0) {
+				out(0).send(new Msg("exAB"));
+				flag0 = false;
+			}
+			index = in().select();
+			msg = in(index).receive();
+			if(msg != null && msg.getText().startsWith("exAB")) {
+				flag = false;
+			}
+			sent = true;
+			out(0).send(new Msg("exAB"));
+		   }
+		if(number == 1) {
+			index = in().select();
+			 msg = in(index).receive();
+			 if(msg != null ) {
+			 out(0).send(new Msg(msg.getText()+"ex"));
+			 sent = true;
+			 }
+		}
+		if (number == 2)
+		 {
+			if(flag1) {
+				out(0).send(new Msg("exCD"));
+				flag1 = false;
+			}else {
+				index = in().select();
+				 msg = in(index).receive();
+				 if(msg != null ) {
+				 out(0).send(new Msg(msg.getText().substring(0, msg.getText().length() - 2)+"CD"));
+				 sent = true;
+				 }
+			}
+			 sent = true;
+		 }
+		if (number == 3)
+		 {
+			index = in().select();
+			 msg = in(index).receive();
+			 if(msg != null ) {
+			 out(0).send(new Msg(msg.getText()+"ex"));
+			 sent = true;
+			 }
+		 }
+		if (number == 4)
+		 {
+			if(flag2) {
+				out(0).send(new Msg("exEF"));
+				flag2 = false;
+			}else {
+				index = in().select();
+				 msg = in(index).receive();
+				 if(msg != null ) {
+				 out(0).send(new Msg(msg.getText().substring(0, msg.getText().length() - 2)+"EF"));
+				 sent = true;
+				 }
+			}
+			 sent = true;
+		 }
+		if (number == 5)
+		 {
+			index = in().select();
+			 msg = in(index).receive();
+			 if(msg != null ) {
+			 out(0).send(new Msg(msg.getText()+"ex"));
+			 sent = true;
+			 }
+		 }
+		if (number == 6)
+		 {
+			if(flag3) {
+				out(0).send(new Msg("exGH"));
+				flag3 = false;
+			}else {
+				index = in().select();
+				 msg = in(index).receive();
+				 if(msg != null ) {
+				 out(0).send(new Msg(msg.getText().substring(0, msg.getText().length() - 2)+"GH"));
+				 sent = true;
+				 }
+			}
+			 sent = true;
+		 }
+		if (number == 7)
+		 {
+			index = in().select();
+			 msg = in(index).receive();
+			 if(msg != null ) {
+			 out(0).send(new Msg(msg.getText()+"ex"));
+			 sent = true;
+			 }
+		 }
+		
+	}
 }
 
 // --------------------------------------------------------------------------
