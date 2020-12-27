@@ -36,17 +36,47 @@ public void main()
    }
  if (number == 1)
  {
-	 out(1).send(new Msg("exAB"));
+	 out(0).send(new Msg("exABex"));
 	 sent = true;
  }
- GlobalAssertion assertion = new NumberOfMessages();
- for (int i = 0; i < 5; i++)
+ if (number == 2)
+ {
+	 out(0).send(new Msg("exCD"));
+	 sent = true;
+ }
+ if (number == 3)
+ {
+	 out(0).send(new Msg("exCDex"));
+	 sent = true;
+ }
+ if (number == 4)
+ {
+	 out(0).send(new Msg("exEF"));
+	 sent = true;
+ }
+ if (number == 5)
+ {
+	 out(0).send(new Msg("exEFex"));
+	 sent = true;
+ }
+ if (number == 6)
+ {
+	 out(0).send(new Msg("exGH"));
+	 sent = true;
+ }
+ if (number == 7)
+ {
+	 out(0).send(new Msg("exGHex"));
+	 sent = true;
+ }
+ //GlobalAssertion assertion = new NumberOfMessages();
+ for (int i = 0; i < 8; i++)
    {
 	//test(assertion);
 	index = in().select();
 	msg = in(index).receive();
 	out(index).send(msg);
-	msg = null;
+	//msg = null;
    }
 }
 
